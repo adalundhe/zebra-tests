@@ -1,0 +1,16 @@
+results
+venv
+*.pyc
+reports/*.html
+reports/*.xml
+reports/*.log
+reports/*.png
+.idea
+build-artifacts/
+
+.DS_Store
+resources/.DS_Store
+tests/.DS_Store
+tests/functional/ui/.DS_Store
+tests/scenario/ui/.DS_Store
+.vscode
