@@ -2,3 +2,4 @@ robotframework==3.1.2
 robotframework-SeleniumLibrary
 webdrivermanager
 requests
+beautifulsoup4

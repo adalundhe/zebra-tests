@@ -1,7 +1,8 @@
 *** Settings ***
-Documentation   Technical resources for launcher page related elements and functions
+Documentation   Technical resources for verifying browser functionality and homepage is reachable.
 Library         SeleniumLibrary
 Resource        ${RESOURCE_DIR}/technical/ui/browser.resource.robot
+
 
 *** Keywords ***
 
