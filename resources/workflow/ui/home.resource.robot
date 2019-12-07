@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation   Technical resources for launcher page related elements and functions
+Documentation   Technical resources for homepage related elements and functions
 Library         SeleniumLibrary
 Library         Collections
 Library         HTMLParse
@@ -21,8 +21,8 @@ Verify Insurance Option Text Exists
     [Documentation]  Verify that the specified insurance type is accompanied by matching text.
     [Arguments]  ${insurance_type}=Car insurance
 
-    ${parent_label_element}=  Get Element  parent_type=label  parent_label=track-label  parent_label_value=${insurance_type}
-    ${child_div_element}=  Find Children by Label  parent_element=${parent_label_element}  child_type=div  child_label_value=label-title
+    ${parent_label_element}=  Get Element  type=label  label=track-label  label_value=${insurance_type}
+    ${child_div_element}=  Find Children by Label  parent_element=${parent_label_element}  child_type=div  child_attribute_value=label-title
     ${number_of_elements_found}=  Get Length  ${child_div_element}
 
     should be equal as integers  ${number_of_elements_found}  1
@@ -40,8 +40,8 @@ Verify Insurance Option SVG Exists
     [Documentation]  Verify that the specified insurance type is accompanied by a SVG image.
     [Arguments]  ${insurance_type}=Car insurance
 
-    ${parent_label_element}=  Get Element  parent_type=label  parent_label=track-label  parent_label_value=${insurance_type}
-    ${child_div_elements}=  Find Children by Label  parent_element=${parent_label_element}  child_type=div  child_label_value=svg-container
+    ${parent_label_element}=  Get Element  type=label  label=track-label  label_value=${insurance_type}
+    ${child_div_elements}=  Find Children by Label  parent_element=${parent_label_element}  child_type=div  child_attribute_value=svg-container
     ${number_of_elements_found}=  Get Length  ${child_div_elements}
 
     should be equal as integers  ${number_of_elements_found}  1
@@ -52,12 +52,3 @@ Verify Insurance Option SVG Exists
     ${svg_element_type}=  Set Variable  ${child_svg_element.tag_name}
 
     should be equal as strings  ${svg_element_type}  svg
-
-
-Verify Homepage Form Input Field Exists
-    [Documentation]  Verify that the specified form field exists on the homepage.
-    [Arguments]  ${input_field_name}=None
-
-    ${found_field_name}=  Get Element Value by Label  element_type=input  label=name  value=${input_field_name}
-
-    should be equal as strings   ${found_field_name}  ${input_field_name}
