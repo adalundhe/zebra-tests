@@ -11,16 +11,16 @@ Verify Insurance Option Exists
     [Documentation]  Verify that the homepage allows users to select the specified insurance type.
     [Arguments]  ${insurance_type}=Car insurance
 
-    ${label_value}=  Get Element Value by Label  element_type=label  label=track-label  value=${insurance_type}
+    ${found_value}=  Get Element Value by Attribute  element_type=label  attribute=track-label  attribute_value=${insurance_type}
 
-    should be equal as strings   ${label_value}  ${insurance_type}
+    should be equal as strings   ${found_value}  ${insurance_type}
 
 
 Verify Insurance Option Text Exists
     [Documentation]  Verify that the specified insurance type is accompanied by matching text.
     [Arguments]  ${insurance_type}=Car insurance
 
-    ${parent_label_element}=  Get Element  type=label  label=track-label  label_value=${insurance_type}
+    ${parent_label_element}=  Get Element  type=label  attribute=track-label  attribute_value=${insurance_type}
     ${child_div_element}=  Find Children by Label  parent_element=${parent_label_element}  child_type=div  child_attribute_value=label-title
     ${number_of_elements_found}=  Get Length  ${child_div_element}
 
@@ -39,7 +39,7 @@ Verify Insurance Option SVG Exists
     [Documentation]  Verify that the specified insurance type is accompanied by a SVG image.
     [Arguments]  ${insurance_type}=Car insurance
 
-    ${parent_label_element}=  Get Element  type=label  label=track-label  label_value=${insurance_type}
+    ${parent_label_element}=  Get Element  type=label  attribute=track-label  attribute_value=${insurance_type}
     ${child_div_elements}=  Find Children by Label  parent_element=${parent_label_element}  child_type=div  child_attribute_value=svg-container
     ${number_of_elements_found}=  Get Length  ${child_div_elements}
 
