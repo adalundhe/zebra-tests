@@ -2,6 +2,7 @@
 Library         SeleniumLibrary
 Resource        ${RESOURCE_DIR}/workflow/ui/setup.resource.robot
 Suite Setup     Open Browser at The Zebra
+#Suite Teardown  Close Browser at Zebra
 
 
 *** Keywords  ***

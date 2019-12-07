@@ -37,7 +37,7 @@ Get Element if Contains
     [Documentation]  Select and return an element if the specified value occurs in the specified label.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
 
-    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type} [contains(@  ${attribute}  ,'  ${attribute_value}  ')]
+    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,'  ${attribute_value}  ')]
 
     Log  Selecting element at X-Path: ${locator}  debug
 
@@ -110,3 +110,38 @@ Get Attribute Value from Raw Element
 
 
     [Return]  ${attribute_value}
+
+
+Input Text Data to Element
+    [Documentation]  Enter text data for the specified element.
+    [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None  ${text_data}=None
+
+    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,'  ${attribute_value}  ')]
+    Input Text  ${locator}  ${text_data}
+
+
+Get Element Text
+    [Documentation]  Get text data currently in the specified element.
+    [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
+
+    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,'  ${attribute_value}  ')]
+    ${found_text}=  Get Value  ${locator}
+
+    [Return]  ${found_text}
+
+
+Click Element via UI
+    [Documentation]  Select the specified element by matching attribute/attribute value and click.
+    [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
+
+    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [@  ${attribute}  ="  ${attribute_value}  "]
+
+    Click Element  ${locator}
+
+
+Wait for Element to Appear via UI
+    [Documentation]  Wait for an element matching the specified attribute/attribute value to appear.
+    [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None  ${timeout}=None
+
+    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [@  ${attribute}  ="  ${attribute_value}  "]
+    Wait Until Page Contains Element  ${locator}  ${timeout}

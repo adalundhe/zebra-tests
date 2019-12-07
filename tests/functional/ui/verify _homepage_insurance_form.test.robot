@@ -1,5 +1,4 @@
 *** Settings ***
-Library         SeleniumLibrary
 Resource        ${RESOURCE_DIR}/workflow/ui/form.resource.robot
 
 
