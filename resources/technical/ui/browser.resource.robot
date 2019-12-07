@@ -5,8 +5,8 @@ Library         SeleniumLibrary
 
 *** Keywords ***
 
-Start Browser
-    [Documentation]  use local webdriver by default, and browserstack if specified in BROWSER_PROVIDER
+Start Browser via UI
+    [Documentation]  Start the browser and open to default specified TheZebra address.
 
     Open Browser  ${ZEBRA_URL}  ${BROWSER}
     Set Browser Implicit Wait  10  # Wait up to 10 seconds for browser to open.

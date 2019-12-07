@@ -1,5 +1,4 @@
 *** Settings ***
-Library         SeleniumLibrary
 Resource        ${RESOURCE_DIR}/workflow/ui/home.resource.robot
 Test Template  Verify Insurance ${Type} on Home Page
 Test Timeout  15 seconds

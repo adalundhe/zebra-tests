@@ -1,6 +1,5 @@
 *** Settings ***
 Documentation   Technical resources for form related elements and functions
-Library         SeleniumLibrary
 Library         Collections
 Library         HTMLParse
 Resource        ${RESOURCE_DIR}/technical/ui/html.resource.robot
@@ -73,3 +72,28 @@ Get Form Button
     should be equal as strings  ${found_attribute_value}  ${attribute_value}
 
     [Return]  ${selected_button_element}
+
+
+Enter Text for Input Field
+    [Documentation]  Select an input element by attribute and attribute value and enter the specified text.
+    [Arguments]  ${input_attribute}=name  ${input_attribute_value}=None  ${input_text}=None
+
+    Input Text Data to Element  type=input  attribute=${input_attribute}  attribute_value=${input_attribute_value}  text_data=${input_text}
+
+    ${found_text}=  Get Element Text  type=input  attribute=${input_attribute}  attribute_value=${input_attribute_value}
+
+    should be equal as strings  ${found_text}  ${input_text}
+
+
+Click Submit Button
+    [Documentation]  Click the submit button (selected by attribute and attribute value) to submit the form.
+    [Arguments]  ${button_attribute}=name  ${button_attribute_value}=None
+
+    Click Element via UI  type=button  attribute=${button_attribute}  attribute_value=${button_attribute_value}
+
+
+Verify Next Page Loaded
+    [Documentation]  Verify the next page has loaded after submitting a form by checking for the specified element.
+    [Arguments]  ${element_type}=div  ${element_attribute}=class  ${elment_attribute_value}=None  ${timeout}=None
+
+    Wait for Element to Appear via UI  type=${element_type}  attribute=${element_attribute}  attribute_value=${elment_attribute_value}  timeout=${timeout}

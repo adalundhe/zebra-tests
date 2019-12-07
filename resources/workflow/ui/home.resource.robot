@@ -1,6 +1,5 @@
 *** Settings ***
 Documentation   Technical resources for homepage related elements and functions
-Library         SeleniumLibrary
 Library         Collections
 Library         HTMLParse
 Resource        ${RESOURCE_DIR}/technical/ui/html.resource.robot
