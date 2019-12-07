@@ -3,6 +3,7 @@ Documentation   Technical resources for launcher page related elements and funct
 Library         SeleniumLibrary
 Resource        ${RESOURCE_DIR}/technical/ui/browser.resource.robot
 
+
 *** Keywords ***
 
 Open Home Page via UI
