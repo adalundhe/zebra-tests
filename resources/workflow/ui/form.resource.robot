@@ -99,3 +99,10 @@ Verify Next Page Loaded
     [Arguments]  ${element_type}=div  ${element_attribute}=class  ${element_attribute_value}=None  ${timeout}=None
 
     Wait for Element to Appear via UI  type=${element_type}  attribute=${element_attribute}  attribute_value=${element_attribute_value}  timeout=${timeout}
+
+
+Traverse and Select on Dropdown
+    [Documentation]  Select, traverse, and click on a dropdown matching input criteria.
+    [Arguments]  ${element_type}=div  ${dropdown_attribute}=class  ${dropdown_attribute_value}=None  ${dropdown_select_value}=None  ${timeout}=None
+
+    Select Element From Dropdown by Text via UI  text_data=${dropdown_select_value}  timeout=${timeout}
