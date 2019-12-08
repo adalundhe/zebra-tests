@@ -99,7 +99,7 @@ Input Text Data to Element
 
     ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,'  ${attribute_value}  ')]
     Log  Selecting element(s) at X-Path: ${locator} debug
-    Input Text  ${locator}  ${text_data}
+    Press Key  ${locator}  ${text_data}
 
 
 Get Element Text
@@ -123,11 +123,19 @@ Click Element via UI
     Click Element  ${locator}
 
 
-Click Raw Element via UI
+Click with Wait via UI
     [Documentation]  Call click on a raw Selenium element object.
-    [Arguments]  ${element}
+    [Arguments]  ${text_data}=None  ${timeout}=None
 
-    Call Method  ${element}  click
+
+    ${locator}=  Catenate  SEPARATOR=  //*[text()[contains(., '  ${text_data}  ')]]
+    ${found_element}=  Get WebElement  ${locator}
+
+    Wait Until Element Is Enabled  ${locator}  ${timeout}
+    Page Should Contain Element  ${locator}
+    Mouse Down  ${locator}
+    Sleep  ${CLICK_SLEEP}
+    Click Element   ${locator}
 
 
 Wait for Element to Appear via UI
@@ -138,14 +146,3 @@ Wait for Element to Appear via UI
     Log  Selecting element(s) at X-Path: ${locator} debug
     Wait Until Page Contains Element  ${locator}  ${timeout}
 
-
-Select Element From Dropdown by Text via UI
-    [Documentation]  Traverse a dropdown list and select the element with matching text.
-    [Arguments]  ${text_data}=None  ${timeout}=None
-
-    ${locator}=  Catenate  SEPARATOR=  //*[text()[contains(., '  ${text_data}  ')]]
-    Wait Until Element Is Enabled  ${locator}  ${timeout}
-    Page Should Contain Element  ${locator}
-    Mouse Down  ${locator}
-    Sleep  ${CLICK_SLEEP}
-    Click Element   ${locator}
