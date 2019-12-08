@@ -123,6 +123,13 @@ Click Element via UI
     Click Element  ${locator}
 
 
+Click Raw Element via UI
+    [Documentation]  Call click on a raw Selenium element object.
+    [Arguments]  ${element}
+
+    Call Method  ${element}  click
+
+
 Wait for Element to Appear via UI
     [Documentation]  Wait for an element matching the specified attribute/attribute value to appear.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None  ${timeout}=None
@@ -130,3 +137,15 @@ Wait for Element to Appear via UI
     ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [@  ${attribute}  ="  ${attribute_value}  "]
     Log  Selecting element(s) at X-Path: ${locator} debug
     Wait Until Page Contains Element  ${locator}  ${timeout}
+
+
+Select Element From Dropdown by Text via UI
+    [Documentation]  Traverse a dropdown list and select the element with matching text.
+    [Arguments]  ${text_data}=None  ${timeout}=None
+
+    ${locator}=  Catenate  SEPARATOR=  //*[text()[contains(., '  ${text_data}  ')]]
+    Wait Until Element Is Enabled  ${locator}  ${timeout}
+    Page Should Contain Element  ${locator}
+    Mouse Down  ${locator}
+    Sleep  ${CLICK_SLEEP}
+    Click Element   ${locator}

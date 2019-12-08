@@ -7,6 +7,7 @@ ${street_number}  3800
 ${street_name}  Oleary Street
 ${apartment_number}  208
 ${city_state_and_zipcode_text}  Missoula, MT 59808
+${country}  USA
 ${first_name}  Flop
 ${last_name}  Plopopop
 ${month_of_birth}  07
@@ -15,6 +16,7 @@ ${year_of_birth}  1991
 
 ${form_select_attribute}  data-cy
 ${form_name}  questions_formstart
+${dropdown_attribute_value}  dropdown-menu show
 ${address_field_id}  garaging_addressInput
 ${address_div_class}  form-control-meta
 ${unit_field_id}  unitstart
@@ -34,6 +36,7 @@ Enter Data for First Questions and Submit
 
     ${full_street_name}=  Catenate  ${street_number}  ${street_name}
     Enter Text for Input Field  input_attribute=id  input_attribute_value=${address_field_id}  input_text=${full_street_name}
+
     Enter Text for Input Field  input_attribute=id  input_attribute_value=${unit_field_id}  input_text=${apartment_number}
     Enter Text for Input Field  input_attribute=id  input_attribute_value=${first_name_field_id}  input_text=${first_name}
     Enter Text for Input Field  input_attribute=id  input_attribute_value=${last_name_field_id}  input_text=${last_name}
@@ -52,6 +55,4 @@ Enter Data for First Questions and Submit
     Verify Text Attribute  field_type=input  attribute=value  attribute_value=${last_name}
     Verify Text Attribute  field_type=input  attribute=value  attribute_value=${full_date_of_birth}
     Click Form Element  attribute=id  attribute_value=${button_attribute_value}  timeout=${timeout}
-
-
     Verify Next Page Loaded  element_type=input  element_attribute=id  element_attribute_value=${vehicle_year_field_id}  timeout=${timeout}
