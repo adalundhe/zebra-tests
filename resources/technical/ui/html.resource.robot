@@ -95,7 +95,7 @@ Find Descendant by Local Name
     ${locator}=  Catenate  SEPARATOR=  descendant::*[local-name() = '${local_name}']
     Log  Selecting element(s) at X-Path: ${locator}  debug
     ${descendant_elements}=  Call Method  ${parent_element}  find_element  by=xpath  value=${locator}
-    Log  Found descendant elements: ${descendant_element} of parent element: ${parent_element} at X-Path: ${locator}  debug
+    Log  Found descendant elements: ${descendant_elements} of parent element: ${parent_element} at X-Path: ${locator}  debug
 
     [Return]  ${descendant_elements}
 
