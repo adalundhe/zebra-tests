@@ -13,7 +13,7 @@ ${driver_element_class}  driver-text d-inline
 ${address_element_type}  p
 ${address_class_name}  address
 ${button_attribute_value}  driversSelectSaveBtn
-${gender_field_input_id}  gender-0-0
+${next_page_element_id}  gender-0-0
 ${timeout}  30
 
 
@@ -26,4 +26,4 @@ Complete Drivers Selection Form and Submit
     Verify Driver Info Exists  element_type=${address_element_type}  element_class=${address_class_name}  driver_info=${full_street}
 
     Click Form Element  attribute=id  attribute_value=${button_attribute_value}  timeout=${timeout}
-    Verify Next Page Loaded  element_type=input  element_attribute=id  element_attribute_value=${gender_field_input_id}  timeout=${timeout}
+    Verify Next Page Loaded  element_type=input  element_attribute=id  element_attribute_value=${next_page_element_id}  timeout=${timeout}

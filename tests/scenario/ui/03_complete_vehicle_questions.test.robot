@@ -15,7 +15,7 @@ ${vehicle_model_field_id}  modelModel-0Input-0
 ${vehicle_submodel_field_id}  submodelSubmodel-0Input-0
 ${button_attribute_value}  vehiclesSelectSaveBtn
 
-${ownership_field_id}  ownership-0-0
+${next_page_element_id}  ownership-0-0
 ${timeout}  120
 
 
@@ -37,4 +37,4 @@ Complete Vehicle Questions and Submit
     ${current_input_value}=  Get Element Value by Attribute  element_type=input  attribute=placeholder  attribute_value=${submodel}
 
     Click Form Element  attribute=id  attribute_value=${button_attribute_value}  timeout=${timeout}
-    Verify Next Page Loaded  element_type=input  element_attribute=id  element_attribute_value=${ownership_field_id}  timeout=${timeout}
+    Verify Next Page Loaded  element_type=input  element_attribute=id  element_attribute_value=${next_page_element_id}  timeout=${timeout}

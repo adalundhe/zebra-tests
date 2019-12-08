@@ -45,7 +45,7 @@ RESOURCE_DIR = _get_and_set_env_var(
 )
 
 CLICK_SLEEP = _get_and_set_env_var(
-    'CLICK_SLEEP', '15 seconds'
+    'CLICK_SLEEP', '5 seconds'
 )
 
 ZEBRA_HOST = _get_and_set_env_var(
