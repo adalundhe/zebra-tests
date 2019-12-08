@@ -17,6 +17,26 @@ Get Element Value by Attribute
     [Return]  ${found_value}
 
 
+Get Element Value Attribute
+    [Documentation]  Get text data currently in the specified element.
+    [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
+
+    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,"  ${attribute_value}  ")]
+    Log  Selecting element(s) at X-Path: ${locator} debug
+    ${found_text}=  Get Value  ${locator}
+
+    [Return]  ${found_text}
+
+
+Get Attribute Value from Raw Element
+    [Documentation]  Return the specified attribute value for a raw Selenium element object.
+    [Arguments]  ${element}=None  ${attribute}=class
+
+    ${attribute_value}=  Call Method  ${element}  get_attribute  ${attribute}
+
+    [Return]  ${attribute_value}
+
+
 Get Element
     [Documentation]  Select an element if the specified value occurs in the specified label.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
@@ -28,7 +48,7 @@ Get Element
     [Return]  ${found_element}
 
 
-Get Element if Contains
+Get Element if Contains Attribute
     [Documentation]  Select and return an element if the specified value occurs in the specified label.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
 
@@ -39,7 +59,7 @@ Get Element if Contains
     [Return]  ${found_element}
 
 
-Find Children by Label
+Find Children by Attribute
     [Documentation]  Find the specified child element that matches the specified label value.
     [Arguments]  ${parent_element}=None  ${child_type}=div  ${child_attribute}=class  ${child_attribute_value}=None
 
@@ -50,7 +70,7 @@ Find Children by Label
     [Return]  ${child_element}
 
 
-Find Descendant by Label
+Find Descendant by Attribute
     [Documentation]  Find the specified child element that matches the specified label value.
     [Arguments]  ${parent_element}=None  ${child_type}=div  ${child_attribute}=class  ${child_attribute_value}=None
 
@@ -73,24 +93,15 @@ Find Descendant by Local Name
     [Return]  ${children_elements}
 
 
-Find Parent by Label
+Find Parent by Attribute
     [Documentation]  Find an elements parent mathing the specified label and label value.
-    [Arguments]  ${child_element}=None  ${parent_type}=div  ${parent_label}=class  ${parent_label_value}=None
+    [Arguments]  ${child_element}=None  ${child_type}=div  ${child_attribute}=class  ${child_attribute_value}=None
 
     ${locator}=  Catenate  SEPARATOR=  parent::  ${child_type}  [@  ${child_attribute}  ="  ${child_attribute_value}  "]
     Log  Selecting element(s) at X-Path: ${locator} debug
     ${parent_element}=  Call Method  ${child_element}  find_element  by=xpath  value=${locator}
 
     [Return]  ${parent_element}
-
-
-Get Attribute Value from Raw Element
-    [Documentation]  Return the specified attribute value for a raw Selenium element object.
-    [Arguments]  ${element}=None  ${attribute}=class
-
-    ${attribute_value}=  Call Method  ${element}  get_attribute  ${attribute}
-
-    [Return]  ${attribute_value}
 
 
 Input Text Data to Element
@@ -102,18 +113,7 @@ Input Text Data to Element
     Press Key  ${locator}  ${text_data}
 
 
-Get Element Text
-    [Documentation]  Get text data currently in the specified element.
-    [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
-
-    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,"  ${attribute_value}  ")]
-    Log  Selecting element(s) at X-Path: ${locator} debug
-    ${found_text}=  Get Value  ${locator}
-
-    [Return]  ${found_text}
-
-
-Click Element via UI
+Click Element Matching Attribute
     [Documentation]  Select the specified element by matching attribute/attribute value and click.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None  ${timeout}=None
 
@@ -123,7 +123,7 @@ Click Element via UI
     Click Element  ${locator}
 
 
-Click with Wait via UI
+Click Element Containing Text
     [Documentation]  Call click on a raw Selenium element object.
     [Arguments]  ${text_data}=None  ${timeout}=None
 
@@ -145,7 +145,7 @@ Force Click
     Call Method  ${element}  click
 
 
-Wait for Element to Appear via UI
+Wait for Element to Appear
     [Documentation]  Wait for an element matching the specified attribute/attribute value to appear.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None  ${timeout}=None
 

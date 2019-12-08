@@ -5,7 +5,7 @@ Library         SeleniumLibrary
 
 *** Keywords ***
 
-Start Browser via UI
+Start Browser
     [Documentation]  Start the browser and open to default specified TheZebra address.
 
     Open Browser  ${ZEBRA_URL}  ${BROWSER}

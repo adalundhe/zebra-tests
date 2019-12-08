@@ -37,19 +37,19 @@ ${timeout}  180
 Complete Driver Details Form and Submit
     [Documentation]  Verify that valid information can be entered for the driver details form and the form submits.
 
-    Click with Wait via UI  text_data=${driver_gender}  timeout=${timeout}
-    Click with Wait via UI  text_data=${marital_status}  timeout=${timeout}
-    Click with Wait via UI  text_data=${home_ownership}  timeout=${timeout}
-    Click with Wait via UI  text_data=${credit_score}  timeout=${timeout}
-    Click with Wait via UI  text_data=${education_level}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${driver_gender}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${marital_status}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${home_ownership}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${credit_score}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${education_level}  timeout=${timeout}
     Select Driver Insurance Option  label_attribute=for  label_attribute_value=${currently_insured_attribute_value}
-    Click with Wait via UI  text_data=${insured_history_length}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${insured_history_length}  timeout=${timeout}
     Enter Text for Input Field  input_attribute=${current_carrier_attribute}  input_attribute_value=${current_carrier_attribute_value}  input_text=${current_carrier}
     Select Driver Insurance Option  label_attribute=for  label_attribute_value=${violations_attribute_value}
     Enter Text for Input Field  input_attribute=${driver_email_attribute}  input_attribute_value=${driver_email_attribute_value}  input_text=${driver_email}
-    Click with Wait via UI  text_data=${discount_one}  timeout=${timeout}
-    Click with Wait via UI  text_data=${discount_two}  timeout=${timeout}
-    Click with Wait via UI  text_data=${discount_three}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${discount_one}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${discount_two}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${discount_three}  timeout=${timeout}
     Enter Text for Input Field  input_attribute=${referral_attribute}  input_attribute_value=${referral_attribute_value}  input_text=${referral}
 
     Click Form Element  attribute=id  attribute_value=${button_attribute_value}  timeout=${timeout}

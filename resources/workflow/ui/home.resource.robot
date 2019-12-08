@@ -21,7 +21,7 @@ Verify Insurance Option Text Exists
     [Arguments]  ${insurance_type}=Car insurance
 
     ${parent_label_element}=  Get Element  type=label  attribute=track-label  attribute_value=${insurance_type}
-    ${child_div_element}=  Find Children by Label  parent_element=${parent_label_element}  child_type=div  child_attribute_value=label-title
+    ${child_div_element}=  Find Children by Attribute  parent_element=${parent_label_element}  child_type=div  child_attribute_value=label-title
     ${number_of_elements_found}=  Get Length  ${child_div_element}
 
     should be equal as integers  ${number_of_elements_found}  1
@@ -40,7 +40,7 @@ Verify Insurance Option SVG Exists
     [Arguments]  ${insurance_type}=Car insurance
 
     ${parent_label_element}=  Get Element  type=label  attribute=track-label  attribute_value=${insurance_type}
-    ${child_div_elements}=  Find Children by Label  parent_element=${parent_label_element}  child_type=div  child_attribute_value=svg-container
+    ${child_div_elements}=  Find Children by Attribute  parent_element=${parent_label_element}  child_type=div  child_attribute_value=svg-container
     ${number_of_elements_found}=  Get Length  ${child_div_elements}
 
     should be equal as integers  ${number_of_elements_found}  1

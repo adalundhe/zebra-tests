@@ -19,8 +19,8 @@ ${timeout}  30
 Complete Ownership Questions and Submit
     [Documentation]  Verify that the form accepts valid ownserhip selections and milage/year input and selections and submits correctly.
 
-    Click with Wait via UI  text_data=${ownership_type}  timeout=${timeout}
-    Click with Wait via UI  text_data=${vehicle_use}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${ownership_type}  timeout=${timeout}
+    Click Form Element Containing Text  text_data=${vehicle_use}  timeout=${timeout}
     Enter Text for Input Field  input_attribute=id  input_attribute_value=${milage_input_field_id}  input_text=${estimated_milage}
 
     Click Form Element  attribute=id  attribute_value=${button_attribute_value}  timeout=${timeout}
