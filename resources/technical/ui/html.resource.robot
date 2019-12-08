@@ -145,4 +145,3 @@ Wait for Element to Appear via UI
     ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [@  ${attribute}  ="  ${attribute_value}  "]
     Log  Selecting element(s) at X-Path: ${locator} debug
     Wait Until Page Contains Element  ${locator}  ${timeout}
-
