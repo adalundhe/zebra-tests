@@ -17,48 +17,74 @@ Get Element Value by Attribute
     [Return]  ${found_value}
 
 
+Get Element Value Attribute
+    [Documentation]  Get text data currently in the specified element.
+    [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
+
+    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,"  ${attribute_value}  ")]
+    Log  Selecting element(s) at X-Path: ${locator} debug
+    ${found_text}=  Get Value  ${locator}
+    Log  Found: ${found_text} for value attribute of element at X-Path: ${locator}  debug
+
+    [Return]  ${found_text}
+
+
+Get Attribute Value from Raw Element
+    [Documentation]  Return the specified attribute value for a raw Selenium element object.
+    [Arguments]  ${element}=None  ${attribute}=class
+
+    ${attribute_value}=  Call Method  ${element}  get_attribute  ${attribute}
+    Log  Found: ${attribute_value} for ${attribute} of element: ${element}  debug
+
+    [Return]  ${attribute_value}
+
+
 Get Element
     [Documentation]  Select an element if the specified value occurs in the specified label.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
 
     ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [@  ${attribute}  ="  ${attribute_value}  "]
     Log  Selecting element at X-Path: ${locator} debug
-    ${found_element}=  Get WebElement  ${locator}   
+    ${found_element}=  Get WebElement  ${locator}
+    Log  Found: ${found_element} at X-Path: ${locator}  debug
 
     [Return]  ${found_element}
 
 
-Get Element if Contains
+Get Element if Contains Attribute
     [Documentation]  Select and return an element if the specified value occurs in the specified label.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
 
     ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,"  ${attribute_value}  ")]
     Log  Selecting element at X-Path: ${locator}  debug
     ${found_element}=  Get WebElement  ${locator}
+    Log  Found: ${found_element} at X-Path: ${locator}  debug
 
     [Return]  ${found_element}
 
 
-Find Children by Label
+Find Children by Attribute
     [Documentation]  Find the specified child element that matches the specified label value.
     [Arguments]  ${parent_element}=None  ${child_type}=div  ${child_attribute}=class  ${child_attribute_value}=None
 
     ${locator}=  Catenate  SEPARATOR=  child::  ${child_type}  [@  ${child_attribute}  ="  ${child_attribute_value}  "]
     Log  Selecting element(s) at X-Path: ${locator} debug
     ${child_element}=  Call Method  ${parent_element}  find_elements  by=xpath  value=${locator}
+    Log  Found child elements: ${child_element} of parent element: ${parent_element} at X-Path: ${locator}  debug
 
     [Return]  ${child_element}
 
 
-Find Descendant by Label
+Find Descendant by Attribute
     [Documentation]  Find the specified child element that matches the specified label value.
-    [Arguments]  ${parent_element}=None  ${child_type}=div  ${child_attribute}=class  ${child_attribute_value}=None
+    [Arguments]  ${parent_element}=None  ${descendant_type}=div  ${descendant_attribute}=class  ${descendant_attribute_value}=None
 
-    ${locator}=  Catenate  SEPARATOR=  descendant::  ${child_type}  [@  ${child_attribute}  ="  ${child_attribute_value}  "]
+    ${locator}=  Catenate  SEPARATOR=  descendant::  ${descendant_type}  [@  ${descendant_attribute}  ="  ${descendant_attribute_value}  "]
     Log  Selecting element(s) at X-Path: ${locator} debug
-    ${child_element}=  Call Method  ${parent_element}  find_elements  by=xpath  value=${locator}
+    ${descendant_element}=  Call Method  ${parent_element}  find_elements  by=xpath  value=${locator}
+    Log  Found descendant elements: ${descendant_element} of parent element: ${parent_element} at X-Path: ${locator}  debug
 
-    [Return]  ${child_element}
+    [Return]  ${descendant_element}
 
 
 Find Descendant by Local Name
@@ -68,29 +94,22 @@ Find Descendant by Local Name
 
     ${locator}=  Catenate  SEPARATOR=  descendant::*[local-name() = '${local_name}']
     Log  Selecting element(s) at X-Path: ${locator}  debug
-    ${children_elements}=  Call Method  ${parent_element}  find_element  by=xpath  value=${locator}
+    ${descendant_elements}=  Call Method  ${parent_element}  find_element  by=xpath  value=${locator}
+    Log  Found descendant elements: ${descendant_element} of parent element: ${parent_element} at X-Path: ${locator}  debug
 
-    [Return]  ${children_elements}
+    [Return]  ${descendant_elements}
 
 
-Find Parent by Label
+Find Parent by Attribute
     [Documentation]  Find an elements parent mathing the specified label and label value.
-    [Arguments]  ${child_element}=None  ${parent_type}=div  ${parent_label}=class  ${parent_label_value}=None
+    [Arguments]  ${child_element}=None  ${child_type}=div  ${child_attribute}=class  ${child_attribute_value}=None
 
     ${locator}=  Catenate  SEPARATOR=  parent::  ${child_type}  [@  ${child_attribute}  ="  ${child_attribute_value}  "]
     Log  Selecting element(s) at X-Path: ${locator} debug
     ${parent_element}=  Call Method  ${child_element}  find_element  by=xpath  value=${locator}
+    Log  Found parent element: ${parent_element} of child element: ${child_element} at X-Path: ${locator}  debug
 
     [Return]  ${parent_element}
-
-
-Get Attribute Value from Raw Element
-    [Documentation]  Return the specified attribute value for a raw Selenium element object.
-    [Arguments]  ${element}=None  ${attribute}=class
-
-    ${attribute_value}=  Call Method  ${element}  get_attribute  ${attribute}
-
-    [Return]  ${attribute_value}
 
 
 Input Text Data to Element
@@ -98,39 +117,27 @@ Input Text Data to Element
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None  ${text_data}=None
 
     ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,"  ${attribute_value}  ")]
-    Log  Selecting element(s) at X-Path: ${locator} debug
+    Log  Selecting element(s) at X-Path: ${locator} and inputting ${text_data} as text  debug
     Press Key  ${locator}  ${text_data}
 
 
-Get Element Text
-    [Documentation]  Get text data currently in the specified element.
-    [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
-
-    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,"  ${attribute_value}  ")]
-    Log  Selecting element(s) at X-Path: ${locator} debug
-    ${found_text}=  Get Value  ${locator}
-
-    [Return]  ${found_text}
-
-
-Click Element via UI
+Click Element Matching Attribute
     [Documentation]  Select the specified element by matching attribute/attribute value and click.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None  ${timeout}=None
 
     ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [@  ${attribute}  ="  ${attribute_value}  "]
-    Log  Selecting element(s) at X-Path: ${locator} debug
+    Log  Selecting element(s) at X-Path: ${locator}  debug
     Wait Until Element Is Enabled  ${locator}  timeout=${timeout}
     Click Element  ${locator}
 
 
-Click with Wait via UI
+Click Element Containing Text
     [Documentation]  Call click on a raw Selenium element object.
     [Arguments]  ${text_data}=None  ${timeout}=None
 
 
     ${locator}=  Catenate  SEPARATOR=  //*[text()[contains(., "  ${text_data}  ")]]
-    ${found_element}=  Get WebElement  ${locator}
-
+    Log  Selecting element(s) at X-Path: ${locator}  debug
     Wait Until Element Is Enabled  ${locator}  ${timeout}
     Page Should Contain Element  ${locator}
     Mouse Down  ${locator}
@@ -141,14 +148,16 @@ Click with Wait via UI
 Force Click
     [Documentation]  Call click on a raw Selenium element.
     [Arguments]  ${element}
-
+    
+    Log  Selecting element: ${element}  debug
     Call Method  ${element}  click
 
 
-Wait for Element to Appear via UI
+Wait for Element to Appear
     [Documentation]  Wait for an element matching the specified attribute/attribute value to appear.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None  ${timeout}=None
 
     ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [@  ${attribute}  ="  ${attribute_value}  "]
-    Log  Selecting element(s) at X-Path: ${locator} debug
+    Log  Selecting element(s) at X-Path: ${locator}  debug
     Wait Until Page Contains Element  ${locator}  ${timeout}
+    Log  Element at X-Path: ${locator} successfully found on page  debug

@@ -11,4 +11,4 @@ Open Browser at The Zebra
     [Documentation]  Verify that the specified browser can successfully open and navigate to TheZebra homepage.
     [Timeout]  30 seconds
 
-    Open Home Page via UI
+    Open Home Page

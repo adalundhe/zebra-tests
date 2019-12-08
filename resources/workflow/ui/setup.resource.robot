@@ -5,7 +5,7 @@ Resource        ${RESOURCE_DIR}/technical/ui/browser.resource.robot
 
 *** Keywords ***
 
-Open Home Page via UI
+Open Home Page
     [Documentation]  Open the home page for TheZebra.com via Selenium
 
-    Start Browser via UI
+    Start Browser

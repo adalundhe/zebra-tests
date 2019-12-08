@@ -24,7 +24,7 @@ Select Driver Insurance Option
     [Arguments]  ${is_insured}=True  ${label_attribute}=None    ${label_attribute_value}=None
 
     ${selected_label}=  Get Element  type=label  attribute=${label_attribute}  attribute_value=${label_attribute_value}
-    ${option_span}=  Find Descendant by Label  ${selected_label}  child_type=span  child_attribute=class  child_attribute_value=custom-control-description
+    ${option_span}=  Find Descendant by Attribute  parent_element=${selected_label}  descendant_type=span  descendant_attribute=class  descendant_attribute_value=custom-control-description
     ${number_of_elements_found}=  Get Length  ${option_span}
 
     should be equal as integers  ${number_of_elements_found}  1
