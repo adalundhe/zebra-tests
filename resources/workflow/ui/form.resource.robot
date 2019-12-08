@@ -24,7 +24,7 @@ Get Form Element
     [Documentation]  Return the specified field matching the specified attribute and attribute value from the given form.
     [Arguments]  ${form_element}=None   ${field_type}=input  ${attribute}=name  ${attribute_value}=None
 
-    ${child_form_element}=  Find Descendant by Attribute  parent_element=${form_element}  child_type=${field_type}  child_attribute=${attribute}  child_attribute_value=${attribute_value}
+    ${child_form_element}=  Find Descendant by Attribute  parent_element=${form_element}  descendant_type=${field_type}  descendant_attribute=${attribute}  descendant_attribute_value=${attribute_value}
     ${number_of_elements_found}=  Get Length  ${child_form_element}
 
     should be equal as integers  ${number_of_elements_found}  1
@@ -37,7 +37,7 @@ Get Form Element
     [Return]  ${selected_form_element}
 
 
-Verify Text Attribute
+Verify Element Attribute Matches
     [Documentation]  Verify the specified attribute/attribute-value pairing exists for a given form element.
     [Arguments]  ${form_element}=None  ${field_type}=form  ${attribute}=class  ${attribute_value}=None
 
@@ -62,7 +62,7 @@ Get Form Button
     [Documentation]  Return the specified button matching the specified attribute and attribute value from the given form.
     [Arguments]  ${form_element}=None  ${attribute}=name  ${attribute_value}=None
 
-    ${child_button_element}=  Find Descendant by Attribute  parent_element=${form_element}  child_type=button  child_attribute=${attribute}  child_attribute_value=${attribute_value}
+    ${child_button_element}=  Find Descendant by Attribute  parent_element=${form_element}  descendant_type=button  descendant_attribute=${attribute}  descendant_attribute_value=${attribute_value}
     ${number_of_elements_found}=  Get Length  ${child_button_element}
 
     should be equal as integers  ${number_of_elements_found}  1
