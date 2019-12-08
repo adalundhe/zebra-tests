@@ -32,7 +32,7 @@ Get Element if Contains
     [Documentation]  Select and return an element if the specified value occurs in the specified label.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
 
-    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,'  ${attribute_value}  ')]
+    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,"  ${attribute_value}  ")]
     Log  Selecting element at X-Path: ${locator}  debug
     ${found_element}=  Get WebElement  ${locator}
 
@@ -97,7 +97,7 @@ Input Text Data to Element
     [Documentation]  Enter text data for the specified element.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None  ${text_data}=None
 
-    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,'  ${attribute_value}  ')]
+    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,"  ${attribute_value}  ")]
     Log  Selecting element(s) at X-Path: ${locator} debug
     Press Key  ${locator}  ${text_data}
 
@@ -106,7 +106,7 @@ Get Element Text
     [Documentation]  Get text data currently in the specified element.
     [Arguments]  ${type}=div  ${attribute}=class  ${attribute_value}=None
 
-    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,'  ${attribute_value}  ')]
+    ${locator}=  Catenate  SEPARATOR=  xpath://  ${type}  [contains(@  ${attribute}  ,"  ${attribute_value}  ")]
     Log  Selecting element(s) at X-Path: ${locator} debug
     ${found_text}=  Get Value  ${locator}
 
@@ -128,7 +128,7 @@ Click with Wait via UI
     [Arguments]  ${text_data}=None  ${timeout}=None
 
 
-    ${locator}=  Catenate  SEPARATOR=  //*[text()[contains(., '  ${text_data}  ')]]
+    ${locator}=  Catenate  SEPARATOR=  //*[text()[contains(., "  ${text_data}  ")]]
     ${found_element}=  Get WebElement  ${locator}
 
     Wait Until Element Is Enabled  ${locator}  ${timeout}
@@ -136,6 +136,13 @@ Click with Wait via UI
     Mouse Down  ${locator}
     Sleep  ${CLICK_SLEEP}
     Click Element   ${locator}
+
+
+Force Click
+    [Documentation]  Call click on a raw Selenium element.
+    [Arguments]  ${element}
+
+    Call Method  ${element}  click
 
 
 Wait for Element to Appear via UI

@@ -25,7 +25,7 @@ ${last_name_field_id}  last_namestart
 ${birthday_field_id}  date_of_birthstart
 ${button_attribute_value}  startSaveBtn
 
-${vehicle_year_field_id}  yearYear-0Input-0
+${next_page_element_id}  yearYear-0Input-0
 ${timeout}  30
 
 
@@ -55,4 +55,4 @@ Enter Data for First Questions and Submit
     Verify Text Attribute  field_type=input  attribute=value  attribute_value=${last_name}
     Verify Text Attribute  field_type=input  attribute=value  attribute_value=${full_date_of_birth}
     Click Form Element  attribute=id  attribute_value=${button_attribute_value}  timeout=${timeout}
-    Verify Next Page Loaded  element_type=input  element_attribute=id  element_attribute_value=${vehicle_year_field_id}  timeout=${timeout}
+    Verify Next Page Loaded  element_type=input  element_attribute=id  element_attribute_value=${next_page_element_id}  timeout=${timeout}

@@ -11,7 +11,7 @@ ${milage_period}  per year
 ${dropdown_attribute_value}  dropdown-menu show
 ${milage_input_field_id}  miles-input-0
 ${button_attribute_value}  vehiclesDetailsSaveBtn
-${button_id}  driversSelectSaveBtn
+${next_page_element_id}  driversSelectSaveBtn
 ${timeout}  30
 
 
@@ -24,5 +24,5 @@ Complete Ownership Questions and Submit
     Enter Text for Input Field  input_attribute=id  input_attribute_value=${milage_input_field_id}  input_text=${estimated_milage}
 
     Click Form Element  attribute=id  attribute_value=${button_attribute_value}  timeout=${timeout}
-    Verify Next Page Loaded  element_type=button  element_attribute=id  element_attribute_value=${button_id}  timeout=${timeout}
+    Verify Next Page Loaded  element_type=button  element_attribute=id  element_attribute_value=${next_page_element_id}  timeout=${timeout}
 
