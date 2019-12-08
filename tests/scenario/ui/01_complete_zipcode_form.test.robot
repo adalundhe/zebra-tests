@@ -25,9 +25,9 @@ Complete Zipcode Form via UI
     [Documentation]  Verify a valid zipcode can be entered into the zipcode form and the form can be submitted.
     
     Enter Text for Input Field  input_attribute=name  input_attribute_value=${input_field_name}  input_text=${input_zipcode}
-    Click Submit Button  button_attribute=${button_attribute}  button_attribute_value=${button_attribute_value}
-    Verify Next Page Loaded  element_type=input  element_attribute=${address_input_attribute}  elment_attribute_value=${address_input_attribute_value}  timeout=${timeout}
-    Verify Next Page Loaded  element_type=input  element_attribute=${unit_input_attribute}  elment_attribute_value=${unit_input_attribute_value}  timeout=${timeout}
-    Verify Next Page Loaded  element_type=input  element_attribute=${first_name_input_attribute}  elment_attribute_value=${first_name_input_attribute_value}  timeout=${timeout}
-    Verify Next Page Loaded  element_type=input  element_attribute=${last_name_input_attribute}  elment_attribute_value=${last_name_input_attribute_value}  timeout=${timeout}
-    Verify Next Page Loaded  element_type=input  element_attribute=${birthday_input_attribute}  elment_attribute_value=${birthday_input_attribute_value}  timeout=${timeout}
+    Click Form Element  attribute=${button_attribute}  attribute_value=${button_attribute_value}  timeout=${timeout}
+    Verify Next Page Loaded  element_type=input  element_attribute=${address_input_attribute}  element_attribute_value=${address_input_attribute_value}  timeout=${timeout}
+    Verify Next Page Loaded  element_type=input  element_attribute=${unit_input_attribute}  element_attribute_value=${unit_input_attribute_value}  timeout=${timeout}
+    Verify Next Page Loaded  element_type=input  element_attribute=${first_name_input_attribute}  element_attribute_value=${first_name_input_attribute_value}  timeout=${timeout}
+    Verify Next Page Loaded  element_type=input  element_attribute=${last_name_input_attribute}  element_attribute_value=${last_name_input_attribute_value}  timeout=${timeout}
+    Verify Next Page Loaded  element_type=input  element_attribute=${birthday_input_attribute}  element_attribute_value=${birthday_input_attribute_value}  timeout=${timeout}

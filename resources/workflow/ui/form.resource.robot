@@ -41,19 +41,21 @@ Verify Text Attribute
     [Documentation]  Verify the specified attribute/attribute-value pairing exists for a given form element.
     [Arguments]  ${form_element}=None  ${field_type}=form  ${attribute}=class  ${attribute_value}=None
 
-    ${form_attribute_value}=  Get Attribute Value from Raw Element  element=${form_element}  attribute=${attribute}
+    ${form_attribute_value}=  Run Keyword If  ${form_element}
+    ...  Get Attribute Value from Raw Element  element=${form_element}  attribute=${attribute}
+    ...  ELSE  Get Element Value by Attribute  element_type=${field_type}  attribute=${attribute}  attribute_value=${attribute_value}
 
     should be equal as strings  ${form_attribute_value}  ${attribute_value}
 
 
-Verify Form Field Label Text
+Verify Form Element Text
     [Documentation]  Verify the text inside a form field label element matches the specified text.
-    [Arguments]  ${form_element}=None  ${label_text}=None
+    [Arguments]  ${form_element}=None  ${text_data}=None
 
     ${inner_html}=  Get Attribute Value from Raw Element  ${form_element}  attribute=innerHTML
     ${cleaned_html}=  Clean InnerHTML  ${inner_html}
 
-    should be equal as strings  ${cleaned_html}  ${label_text}
+    should be equal as strings  ${cleaned_html}  ${text_data}
     
 
 Get Form Button
@@ -85,15 +87,15 @@ Enter Text for Input Field
     should be equal as strings  ${found_text}  ${input_text}
 
 
-Click Submit Button
-    [Documentation]  Click the submit button (selected by attribute and attribute value) to submit the form.
-    [Arguments]  ${button_attribute}=name  ${button_attribute_value}=None
+Click Form Element
+    [Documentation]  Click on the specified form element.
+    [Arguments]  ${element_type}=button  ${attribute}=class  ${attribute_value}=None  ${timeout}=None
 
-    Click Element via UI  type=button  attribute=${button_attribute}  attribute_value=${button_attribute_value}
+    Click Element via UI  type=${element_type}  attribute=${attribute}  attribute_value=${attribute_value}  timeout=${timeout}
 
 
 Verify Next Page Loaded
     [Documentation]  Verify the next page has loaded after submitting a form by checking for the specified element.
-    [Arguments]  ${element_type}=div  ${element_attribute}=class  ${elment_attribute_value}=None  ${timeout}=None
+    [Arguments]  ${element_type}=div  ${element_attribute}=class  ${element_attribute_value}=None  ${timeout}=None
 
-    Wait for Element to Appear via UI  type=${element_type}  attribute=${element_attribute}  attribute_value=${elment_attribute_value}  timeout=${timeout}
+    Wait for Element to Appear via UI  type=${element_type}  attribute=${element_attribute}  attribute_value=${element_attribute_value}  timeout=${timeout}

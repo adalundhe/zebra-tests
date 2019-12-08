@@ -26,8 +26,7 @@ Verify Homepage Form Exists
     Verify Text Attribute  form_element=${crsf_input_field}  field_type=input  attribute=type  attribute_value=${csrf_field_type}
 
     ${zipcode_field_label}=  Get Form Element  form_element=${zipcode_form}  field_type=label  attribute=class  attribute_value=${zipcode_label_class}
-    Verify Form Field Label Text  form_element=${zipcode_field_label}  label_text=${zipcode_label_text}
-
+    Verify Form Element Text  form_element=${zipcode_field_label}  text_data=${zipcode_label_text}
 
     ${zipcode_input_field}=  Get Form Element  form_element=${zipcode_form}  field_type=input  attribute=name  attribute_value=${zipcode_field_name}
     Verify Text Attribute  form_element=${zipcode_input_field}  field_type=input  attribute=type  attribute_value=text
