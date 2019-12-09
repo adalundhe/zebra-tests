@@ -56,7 +56,7 @@ A self-sufficient runtime for containers
 <br/>
 If either command returns an error stating the command is not found, you may install both or either of these dependecies with the commands below:
 
-*For Ubuntu 166.04LTS+:*
+*For Ubuntu 16.04LTS+:*
 ```
 sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 
@@ -198,7 +198,7 @@ level, which can be enabled when running tests as below:
 Providing the:
 
 ```
--- log debug
+--log debug
 ```
 
 argument results in the generation of an HTML file where Robot stores all debug-level logs for later viewing in a browser of your choice. You may find this file in the
@@ -269,4 +269,4 @@ As is here, the tests represent a single use case, with no negative testing and 
 Finally, I'd like to improve upon Robot's reporting and logging with the integration of a full Helm chart including Prometheus/Grafana logging/monitoring of K8s during test execution and a real-time API/UI service to supervise test execution logging and results.
 
 
-# To the Zebra team, Daria, Nick, and Chris, thanks for your time and enjoy!
+# To The Zebra team, Daria, Nick, and Chris, thanks for your time and enjoy!
