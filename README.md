@@ -198,7 +198,7 @@ level, which can be enabled when running tests as below:
 Providing the:
 
 ```
--- log debug
+--log debug
 ```
 
 argument results in the generation of an HTML file where Robot stores all debug-level logs for later viewing in a browser of your choice. You may find this file in the
