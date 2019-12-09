@@ -119,7 +119,7 @@ As simple as the tools and code for the tests are, there are a few nice options 
 First, the tests allow for a user to specify a target site. This is useful if (for example) you want to target a staging instance of the site as opposed to the customer-facing production version. To specify the target instance url, simply copy the text below and change the text between the quotes to the url of the target instance of choice:
 
 ```
-./scripts/run-tests.sh --variable ZEBRA_URL:"<TARGET_URL>"  tests/
+./scripts/run-tests.sh --variable ZEBRA_URL:"<TARGET_URL>"
 ```
 
 Note that the:
@@ -133,13 +133,13 @@ https://www.thezebra.com
 The tests also allow you to specify subdirectories of tests to execute. For example, if I wanted to only execute the functional tests, I could adapt our basic test-run command as follows:
 
 ```
-./scripts/run-tests.sh --variable ZEBRA_URL:"https://www.thezebra.com"  tests/functional/ui
+./scripts/run-tests.sh  tests/functional/ui
 ```
 
 Likewise, if I only need to run the scenario tests, I may do so via the command:
 
 ```
-./scripts/run-tests.sh --variable ZEBRA_URL:"https://www.thezebra.com"  tests/scenario/ui
+./scripts/run-tests.sh  tests/scenario/ui
 ```
 
 Note Robot will execute <em>all</em> tests specified within a given subdirectory, including tests in subdirectories of the path specified. For the current tests, I recommend only specifying execution as far as the innermost subdirectory. Tests provided currently rely on:
@@ -161,7 +161,7 @@ argument, however the:
 argument is likely the one testers may find useful in navigating troublesome and often non-deterministic UI race conditions. You may adjust this variable as below:
 
 ```
-./scripts/run-tests.sh --variable ZEBRA_URL:"https://www.thezebra.com" --variable CLICK_SLEEP:<SECONDS_SLEEP>  tests/scenario/ui
+./scripts/run-tests.sh --variable CLICK_SLEEP:<SECONDS_SLEEP>
 ```
 
 Where:
@@ -192,7 +192,7 @@ level. This is primarily to keep the amount of terminal output to a minimum so u
 level, which can be enabled when running tests as below:
 
 ```
-./scripts/run-tests.sh --variable ZEBRA_URL:"https://www.thezebra.com" --log  debug  tests/
+./scripts/run-tests.sh --log  debug
 ```
 
 Providing the:
