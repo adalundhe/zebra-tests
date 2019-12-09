@@ -56,7 +56,7 @@ A self-sufficient runtime for containers
 <br/>
 If either command returns an error stating the command is not found, you may install both or either of these dependecies with the commands below:
 
-*For Ubuntu 166.04LTS+:*
+*For Ubuntu 16.04LTS+:*
 ```
 sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 
