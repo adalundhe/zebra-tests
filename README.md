@@ -54,7 +54,7 @@ Usage:	docker [OPTIONS] COMMAND
 A self-sufficient runtime for containers
 ```
 <br/>
-If either command returns an error stating the command is not found, you may install both or either of these dependecies with the commands below:
+If either of the above commands returns an error stating the command is not found, you may install both or either of these dependecies with the commands below:
 
 *For Ubuntu 16.04LTS+:*
 ```
@@ -148,17 +148,17 @@ Note Robot will execute <em>all</em> tests specified within a given subdirectory
 
 within those respective directories to perform critical test setup at the suite (directory) level while minimizing repetition of said setup.
 
-There are several additional environmental variables that may be configure via the:
+There are several additional environmental variables that may be configured via the:
 
 ```
 --variables
 ```
 
-argument, however the:
+argument, however:
 
 `CLICK_SLEEP`
 
-argument is likely the one testers may find useful in navigating troublesome and often non-deterministic UI race conditions. You may adjust this variable as below:
+is the one testers will find most useful in navigating troublesome, often non-deterministic UI race conditions. You may adjust this variable as below:
 
 ```
 ./scripts/run-tests.sh --variable CLICK_SLEEP:<SECONDS_SLEEP>
@@ -170,9 +170,9 @@ Where:
 
 is a whole integer.
 
-As modern UIs often contain a good amount of visual wizardry, simply mechanistically and rapidly clicking through form options can often lead to errors due to Selenium attempting to interact with the UI faster than required UI elements are availible for input. Whether this is the fault of Selenium or increasing complexity is UI design is a debate for another day, however introducing a small degree of latency between rapid UI interactions (a few seconds or more on resource-constrained systems) is often a good method of dealing with these inevitable race conditions.
+Modern UIs often contain a good amount of visual wizardry, and rapidly clicking through form options can lead to errors due to Selenium attempting to interact with the UI faster than the required UI elements are availible for input. Whether this is the fault of Selenium or increasing complexity of user interfaces is a debate for another day, however introducing a small degree of latency between UI interactions (a few seconds or more on resource-constrained systems) is a good method of dealing with potential race conditions.
 
-The tradeoff is of course that as the number of automated interactions increases, the more the small amount of latency compounds, resulting in complex UI navigation for full integrated test suites sometimes taking several minutes when they could (and some argue should) take merely a few seconds. I personally feel this is fine an acceptable, even in keeping with the spirit of integrated UI tests simulating human behavior. As humans rarely work through a form in a matter of a few seconds, so too should our tests attempt to replicate that pacing.
+The tradeoff is that as the number of automated interactions increases, the more the small amount of latency compounds. This results in integrated UI tests taking several minutes when they would otherwise take a few seconds.
 
 <br/>
 
@@ -205,11 +205,11 @@ argument results in the generation of an HTML file where Robot stores all debug-
 
 `reports/`
 
-folder. Note that Robot also provides general logs (again via an HTML file viewable via browser) in the:
+folder. Robot also provides general logs (again via an HTML file viewable via browser) in the:
 
 `log.html`
 
-file, and also provides test reports and output in the:
+file. Test reports and output can be found in the:
 
 `report.xml`
 
@@ -219,7 +219,7 @@ and:
 
 files respectively. Either of these XML documents are relatively trivial to conver to JUnit compatible XML for integration with Jenkins or other CI/CD tools.
 
-As UI testing in Robot utilizes Selenium, one of the most important "logging" features included is the generation of screenshots taken at the exact moment a UI test fails. This is particularly useful for identifying where exactly a UI test failed as well as what exactly might have caused the failure, and at least partially makes up for the Robot Framework's strange choice to fail to encorporate any sort of stacktrace-type error reporting. These screenshots are also stored in the:
+UI testing in Robot utilizes Selenium, and one of the most important "logging" features included is the generation of screenshots taken at the exact moment a UI test fails. This is useful for identifying exactly where a UI test failed as well as what might have caused the failure, and at least partially makes up for the Robot Framework's strange omission of stacktrace-type error reporting. These screenshots are also stored in the:
 
 `reports/`
 
