@@ -10,7 +10,7 @@ ____
 ## Usage
 
 #### *Requirements*
-To maximize portability, the test environment and runtime have been Dockerized. Thus, the only requirements to run this test suite are as follows
+To maximize portability, the test environment and runtime have been containerized. Thus, the only requirements to run this test suite are as follows
 
 * Git
 * The latest version of Docker.
@@ -177,3 +177,96 @@ The tradeoff is of course that as the number of automated interactions increases
 <br/>
 
 #### Logging
+By default, all logging for the test suite is at:
+
+`WARN`
+
+and/or:
+
+`ERROR`
+
+level. This is primarily to keep the amount of terminal output to a minimum so users can focus on the test execution itself, and to avoid excess terminal output slowing test execution. However, should a user desire more detailed test output execution, all "technical" keywords (the base building blocks used to execute test behavior) come equipped with excellent logging available at the:
+
+`DEBUG`
+
+level, which can be enabled when running tests as below:
+
+```
+./scripts/run-tests.sh --variable ZEBRA_URL:"https://www.thezebra.com" --log  debug  tests/
+```
+
+Providing the:
+
+```
+-- log debug
+```
+
+argument results in the generation of an HTML file where Robot stores all debug-level logs for later viewing in a browser of your choice. You may find this file in the
+
+`reports/`
+
+folder. Note that Robot also provides general logs (again via an HTML file viewable via browser) in the:
+
+`log.html`
+
+file, and also provides test reports and output in the:
+
+`report.xml`
+
+and:
+
+`output.xml`
+
+files respectively. Either of these XML documents are relatively trivial to conver to JUnit compatible XML for integration with Jenkins or other CI/CD tools.
+
+As UI testing in Robot utilizes Selenium, one of the most important "logging" features included is the generation of screenshots taken at the exact moment a UI test fails. This is particularly useful for identifying where exactly a UI test failed as well as what exactly might have caused the failure, and at least partially makes up for the Robot Framework's strange choice to fail to encorporate any sort of stacktrace-type error reporting. These screenshots are also stored in the:
+
+`reports/`
+
+folder for viewing at your convenience.
+
+<br/>
+
+## Q&A and Notes
+_________________________
+
+<b>Question:</b> Why Robot Framework? 
+
+In my interview with Nick Mennen and Chris Wicks, we spoke about how TheZebra is looking at transitioning a previously all-manual test/QE team to utilizing more automated tools. In my work at Lucidworks, we find ourselves likewise grappling with the same issue, and Robot Framework has proved the most successful tool yet in enabling or QE testers to utilize automation.
+
+<b>Question:</b> What advantages does Robot Framework bring?
+
+The biggest advantage I've found in using Robot Framework is in the development and use/reuse of the framework's "Keywords" as well as the ability to write libraries in native Python, which can then likewise be utilized as Keywords without any additional translation or integration work needed. This allows developers to quickly write bespoke tools for testing complex software with minimal setup or difficulty, while allowing less-technical testers to easily understand or even write additional tests thanks to the "plain English" nature of keyword development and usage. That a tester could have no knowledge of Python or JavaScript and be capable of writing fully functional test suites is a powerful thing indeed.
+
+This comes with a caveat though. The quality of a Robot Framework test suite is hugely dependent on the implementation of tight coding standards and thoughtful development of keywords and libraries. Lacking strong convention and control, a Robot Framework suite runs the risk of quickly devolving into a mess of one-off keywords or libraries whose names and functionality are minimally alligned. This is something me and my fellow SDETs at Lucidworks still find ourselves struggling with. How do we write tools that are sensible and accessible to all when we have such a wide array of skill levels, backgrounds, and preferences at our organization? It's a constant struggle and balancing act, and one of the simultaneously most frustrating and rewarding parts of using this tool.
+
+<b>Question:</b>  What are the disadvantages of Robot Framework?
+
+The Robot Framework is <em>far</em> from a perfect tool. I find myself frustrated with the framework's failure to even include the option to view test errors via a traditional Python stacktrace, that the framework will continue to execute even if it encounters a failure (meaning that for particularly large integrated test suites, a developer has to run the whole suite, encounter an error, then make changes and run the whole thing again), and there's no clear path to parallelizing test execution. Likewise, as an open source tool, while the core libraries are often of good quality, third-party libraries vary wildly in quality and consistency of implementation. Case in point, I was forced to write a simple Python "Requests" library wrapper to execute HTTP requests against Fusion due to third-party HTTP libraries either having awkward design choices or forcing us to use sessions (as opposed to simply invoking Requests on a per-call basis).
+
+
+<b>Question:</b>  What's the difference between "Technical" and "Workflow" resources and keywords?
+
+In developing with and working with Robot Framework at Lucidworks, we quickly found an advantageous approach that encouraged QE tester adoption was to designate keywords focused on more low-level functionality as "technical" resources, and then utilize these keywords in to build more accessible and friendly "workflow" keywords.
+
+Technical resources are  designed to be as general as possible, offering functionality that focuses on general actions a user might want to do (i.e. clicking a button, inputing text, making a GET request). Technical resources also bear the important requirement of containing <em>no</em> explicit assertions. By delegating explicit assertions like:
+
+```
+should be equal as integers  ${status_code}  200
+```
+
+to Workflow resources, it becomes easier to identify where the assertion is occuring and to adjust them without affecting additional tests that may also use a technical keyword.
+
+Workflow resources are designed to focus on specific parts of a product (for example, a suite of keywords entirely focused on actions for the homepage), and contain explicit assertions. They are the core tools used in writing the actual test cases within the test files, and often comprise of one or more Technical keywords. Workflow resources are designed to be as explicit as possible about the underlying behavior guiding their use, allowing QE testers or non-developers to clearly see how the behavior encapsulated by a Workflow keyword is accomplished and provide a level of granularity and specialization that helps reduce boilerplate code within test files.
+
+In our use of Technical and Workflow resources, we found this dileniation helped not only promote good code development practices and make debugging easier, but enabled our QE testers to modify feature-specific testing resources to suit changes in software or additional needs without compromising test suite integrity or overwhelming them.
+
+
+<b>Question:</b>  What additional work would you do if you had more time?
+
+As is here, the tests represent a single use case, with no negative testing and a limited set of data for input that I personally verified works. Likewise, while the test environment and runtime are containerized, they have not been containerized in a way that encourages deployment via cluster resources like Kubernetes for potential load testing or other test scenarios. Given more time, I would like to remedy both these issues, as well as break out test data (variables are currently declared within each test file for ease of reading) into seperate Robot "Variables" files, and develop additional Python Libraries to introduce a degree of stochiasticity into test execution. I'd also like to explore local parallelism with Robot. Just because the framework doesn't offer a clear path for test-case parallelism doesn't mean it can't be done!
+
+Finally, I'd like to improve upon Robot's reporting and logging with the integration of a full Helm chart including Prometheus/Grafana logging/monitoring of K8s during test execution and a real-time API/UI service to supervise test execution logging and results.
+
+
+# To the Zebra team, Daria, Nick, and Chris, thanks for your time and enjoy!
