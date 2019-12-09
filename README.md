@@ -269,4 +269,4 @@ As is here, the tests represent a single use case, with no negative testing and 
 Finally, I'd like to improve upon Robot's reporting and logging with the integration of a full Helm chart including Prometheus/Grafana logging/monitoring of K8s during test execution and a real-time API/UI service to supervise test execution logging and results.
 
 
-# To the Zebra team, Daria, Nick, and Chris, thanks for your time and enjoy!
+# To The Zebra team, Daria, Nick, and Chris, thanks for your time and enjoy!
