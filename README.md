@@ -104,7 +104,7 @@ and run the tests via the command:
 ./scripts/run-tests.sh --variable ZEBRA_URL:"https://www.thezebra.com"  tests/
 ```
 
-<em>Note:</em> - If you receive a runtime permisions error when attempting to run the script (particularly on Ubuntu), run the below command to make the script executable, and then try the above command again:
+<em>Note:</em> - If you receive a runtime permissions error when attempting to run the script (particularly on Ubuntu), run the below command to make the script executable, and then try the above command again:
 
 ```
 chmod +x ./scripts/run-tests.sh
